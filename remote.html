@@ -1,0 +1,26 @@
+
+<html>
+<head>
+<script Language="Javascript">
+function set0()
+{
+    document.location="cgi-bin/test2.pl";
+}
+function set1()
+{
+    document.location="cgi-bin/test.pl";
+}
+</script>
+</head>
+<body>
+    <div style="text-align:center">
+    <h1>Raspberry Pi GPIO</h1>
+
+    <img src="https://dl.dropboxusercontent.com/u/5590057/led-accesso.jpg" id="f" onmousedown="set1()" onmouseup="clear01(event)">
+<br>
+    <img src="https://dl.dropboxusercontent.com/u/5590057/led-spento.jpg" id="l" onmousedown="set0()" onmouseup="clear01(event)">
+<br>
+    </div>
+
+</body>
+</html>
