@@ -1,0 +1,44 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+    address 192.168.1.10
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    dns-nameservers 8.8.8.8
+    dns-search mydomain.nl
+
+auto eth0:1
+    iface eth0:1 inet static
+    address 192.168.1.12
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+
+# Scheda wireless configurata con indirizzo statico
+# Da utilizzare al posto della configurazione precedente, MAI insieme
+auto wlan0
+   allow-hotplug wlan0
+   iface wlan0 inet static
+   #iface wlan0 inet dhcp
+   address 192.168.1.207 
+   netmask 255.255.255.0
+   broadcast 192.168.1.255
+   pre-up wpa_supplicant -iwlan0 -c /etc/wpa_supplicant.conf -B
+   wpa-conf /etc/wpa_supplicant.conf 
+
+   up   route add -net 192.168.1.207 netmask 255.255.255.0 gw 192.168.1.1
+   down route del -net 192.168.1.207 netmask 255.255.255.0 gw 192.168.1.1
+
+
+#auto wlan0
+#iface wlan0 inet static
+#    address 192.168.1.205
+#    netmask 255.255.255.0
+#    network 192.168.0.0
+#    broadcast 192.168.0.255
+#    gateway 192.168.1.1
+#    dns-nameservers 192.168.0.1, 192.168.0.2, 8.8.8.8
+#    wpa-ssid "Telecom-65849285"
+#    wpa-psk "IcFeHoWKdJqzEs6Gai0EMsPJ"
+
